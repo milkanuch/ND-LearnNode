@@ -2,7 +2,7 @@ import { Router } from 'express';
 
 import { validateRequest } from '../../middleware';
 import { UsersModel } from '../models/user';
-import * as AuthHandlers from '../handlers/auth';
+import { registration, login } from '../handlers/auth';
 
 const router = Router();
 
@@ -11,7 +11,7 @@ router.post(
   validateRequest({
     body: UsersModel,
   }),
-  AuthHandlers.registration,
+  registration,
 );
 
 router.post(
@@ -22,7 +22,7 @@ router.post(
       password: true,
     }).partial(),
   }),
-  AuthHandlers.login,
+  login,
 );
 
 export default router;

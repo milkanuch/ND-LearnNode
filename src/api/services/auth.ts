@@ -5,7 +5,7 @@ export const createTokens = (id: ObjectId) => {
   const accessToken = jwt.sign(
     { userId: id },
     process.env.ACCESS_TOKEN_SECRET as Secret,
-    { expiresIn: '40d' },
+    { expiresIn: '14d' },
   );
   return {
     accessToken,

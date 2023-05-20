@@ -42,6 +42,7 @@ export const errorHandler = (
 ) => {
   const statusCode = res.statusCode !== 200 ? res.statusCode : 500;
   res.status(statusCode);
+
   res.json({
     message: err.message,
     stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
@@ -68,8 +69,9 @@ export const authenticateToken = (
   next();
 };
 
-export const decodeToken = (token: string) => {
-  jwt.verify(
+export const decodeToken = async (token: string): Promise<string> => {
+  console.log('🚀 ~ file: middleware.ts:72 ~ decodeToken ~ token:', token);
+  const user = jwt.verify(
     token,
     process.env.ACCESS_TOKEN_SECRET as Secret,
     (err, decoded) => {
@@ -78,5 +80,6 @@ export const decodeToken = (token: string) => {
       }
       return decoded;
     },
-  );
+  ) as unknown as string;
+  return user;
 };
