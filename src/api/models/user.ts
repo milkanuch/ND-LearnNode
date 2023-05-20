@@ -1,4 +1,3 @@
-import { WithId } from 'mongodb';
 import * as zod from 'zod';
 
 import { db } from '../../database';
@@ -10,5 +9,4 @@ export const UsersModel = zod.object({
 });
 
 export type User = zod.infer<typeof UsersModel>;
-export type UserWithId = WithId<User>;
 export const Users = db.collection<User>('users');

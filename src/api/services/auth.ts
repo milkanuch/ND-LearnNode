@@ -1,11 +1,11 @@
-import { ObjectId } from "mongodb";
-import jwt, { Secret } from "jsonwebtoken";
+import { ObjectId } from 'mongodb';
+import jwt, { Secret } from 'jsonwebtoken';
 
 export const createTokens = (id: ObjectId) => {
   const accessToken = jwt.sign(
     { userId: id },
     process.env.ACCESS_TOKEN_SECRET as Secret,
-    { expiresIn: "40d" }
+    { expiresIn: '40d' },
   );
   return {
     accessToken,
