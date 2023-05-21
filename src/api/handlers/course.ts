@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from 'express';
-import { Course, Courses, CourseWithId } from '../models/courses';
+import { Course, Courses, CourseWithId } from '../models/course';
 import { ObjectId } from 'mongodb';
 import { ParamsWithId } from '../../interfaces/RequestValidators';
 

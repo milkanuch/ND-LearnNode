@@ -1,13 +1,13 @@
 import express from 'express';
 
-import emojis from './emojis';
 import auth from './routes/auth';
-import courses from './routes/courses';
+import course from './routes/course';
+import user from './routes/user';
 
 const router = express.Router();
 
-router.use('/emojis', emojis);
 router.use('/auth', auth);
-router.use('/courses', courses);
+router.use('/courses', course);
+router.use('/users', user);
 
 export default router;

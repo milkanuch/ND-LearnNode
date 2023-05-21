@@ -35,7 +35,7 @@ export const notFound = (req: Request, res: Response, next: NextFunction) => {
 
 export const errorHandler = (
   err: Error,
-  req: Request,
+  _: Request,
   res: Response<ErrorResponse>,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
@@ -45,7 +45,7 @@ export const errorHandler = (
 
   res.json({
     message: err.message,
-    stack: process.env.NODE_ENV === 'production' ? '🥞' : err.stack,
+    stack: err.stack,
   });
 };
 
@@ -69,8 +69,12 @@ export const authenticateToken = (
   next();
 };
 
-export const decodeToken = async (token: string): Promise<string> => {
-  console.log('🚀 ~ file: middleware.ts:72 ~ decodeToken ~ token:', token);
+export const decodeToken = async (
+  bearerToken: string | undefined,
+): Promise<string> => {
+  if (!bearerToken) return "Stop, where's your token? ";
+  const token = bearerToken.split(' ')[1];
+
   const user = jwt.verify(
     token,
     process.env.ACCESS_TOKEN_SECRET as Secret,
@@ -78,8 +82,10 @@ export const decodeToken = async (token: string): Promise<string> => {
       if (err) {
         throw new Error('Invalid token');
       }
+
       return decoded;
     },
-  ) as unknown as string;
-  return user;
+  ) as unknown as jwt.JwtPayload;
+
+  return user.userId;
 };
