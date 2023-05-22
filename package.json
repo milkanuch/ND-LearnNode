@@ -5,18 +5,8 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts",
-    "dev": "nodemon src/index.ts",
-    "build": "tsc",
-    "lint": "eslint --fix src test",
-    "test": "jest"
+    "lint": "eslint ."
   },
-  "keywords": [],
-  "author": "CJ R. <cj@null.computer> (https://w3cj.now.sh)",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/w3cj/express-api-starter.git"
-  },
-  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",

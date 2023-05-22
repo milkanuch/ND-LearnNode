@@ -4,20 +4,26 @@
 npm install
 ```
 
+or
+
+```
+yarn
+```
+
+### Run Project
+
+```
+npm run start
+```
+
+or
+
+```
+yarn start
+```
+
 ## Lint
 
 ```
 npm run lint
-```
-
-## Test
-
-```
-npm run test
-```
-
-## Development
-
-```
-npm run dev
 ```
